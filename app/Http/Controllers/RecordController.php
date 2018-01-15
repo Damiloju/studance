@@ -53,11 +53,17 @@ class RecordController extends Controller
             $student = $student->where('matric_number',$request->matric_number)->get();
             $data['student_id'] = $student[0]->id;
             $student->load('program.department');
-            $record->create($data);
-            $records =  $record->where('event_id',$request->event)->get();
-            $records = $records->load('student.program.department');
+            $record = $record->where('event_id',$request->event)->where('student_id',$data['student_id'])->first();
+            if ($record === null) {
+                $record->create($data);
+                $records =  $record->where('event_id',$request->event)->get();
+                $records = $records->load('student.program.department');
 
-            return apiSuccess('Event created succesfully',$records,[]);
+                return apiSuccess('Event created succesfully',$records,[]);
+            }
+
+            return apiFailure('That student has already been added to the list',[],1);
+
         }catch(Exception $e){
             return apiFailure($e->getMessage(),[],1);
         }
