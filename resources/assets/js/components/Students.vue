@@ -168,6 +168,7 @@
                       text:response.data.message,
                     });
                     this.students = response.data.data;
+                    this.student = {}
                   }else{
                     this.$notify({
                       group:'program',

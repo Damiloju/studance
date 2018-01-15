@@ -6,6 +6,7 @@ use App\Event;
 use App\Record;
 use App\Student;
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -50,21 +51,28 @@ class RecordController extends Controller
         $data['event_id'] = $request->event;
 
         try {
-            $student = $student->where('matric_number',$request->matric_number)->get();
+            $student = $student->where('matric_number',$request->matric_number)
+                                ->orWhere('temp_number', $request->matric_number)
+                                ->first();
+            if ($student === null) {
+                return apiFailure('That student does not exist',[],1);
+            }
             $data['student_id'] = $student[0]->id;
             $student->load('program.department');
-            $record = $record->where('event_id',$request->event)->where('student_id',$data['student_id'])->first();
-            if ($record === null) {
+            $record_exist = $record->where('event_id',$request->event)
+                            ->where('student_id',$data['student_id'])
+                            ->first();
+            if ($record_exist === null) {
                 $record->create($data);
-                $records =  $record->where('event_id',$request->event)->get();
+                $records =  $record->where('event_id',$request->event)
+                                    ->get();
                 $records = $records->load('student.program.department');
 
                 return apiSuccess('Event created succesfully',$records,[]);
             }
 
             return apiFailure('That student has already been added to the list',[],1);
-
-        }catch(Exception $e){
+        }catch(QueryException $e){
             return apiFailure($e->getMessage(),[],1);
         }
     }
