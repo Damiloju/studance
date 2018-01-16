@@ -33,6 +33,7 @@ class EventController extends Controller
         try {
             $event->delete();
             $events =  Event::all();
+
             return apiSuccess('Event deleted succesfully',$events,[]);
         }catch(Exception $e){
             return apiFailure($e->getMessage(),[],1);
@@ -46,7 +47,9 @@ class EventController extends Controller
             $event = $event->id;
             $record =  new Record;
             $records =  $record->where('event_id',$event)->get();
-            $records = $records->load('student.program.department');
+            $records = $records->load(['student' => function ($query){
+                $query->withTrashed()->with('program.department');
+            }]);
 
             return apiSuccess('Records created succesfully',$records,[]);
         }catch(Exception $e){

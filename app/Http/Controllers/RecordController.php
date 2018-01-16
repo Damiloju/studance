@@ -51,10 +51,9 @@ class RecordController extends Controller
         $data['event_id'] = $request->event;
 
         try {
-            $student = $student->where('matric_number',$request->matric_number)
-                                ->orWhere('temp_number', $request->matric_number)
-                                ->first();
-            if ($student === null) {
+            $student = $student->where('matric_number',$request->matric_number)->orWhere('temp_number', $request->matric_number)->get();
+
+            if ($student->isEmpty()) {
                 return apiFailure('That student does not exist',[],1);
             }
             $data['student_id'] = $student[0]->id;
@@ -66,7 +65,9 @@ class RecordController extends Controller
                 $record->create($data);
                 $records =  $record->where('event_id',$request->event)
                                     ->get();
-                $records = $records->load('student.program.department');
+                $records = $records->load(['student' => function ($query){
+                    $query->withTrashed()->with('program.department');
+                }]);
 
                 return apiSuccess('Event created succesfully',$records,[]);
             }

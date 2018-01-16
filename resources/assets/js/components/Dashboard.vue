@@ -62,6 +62,7 @@
                                     <th>Department</th>
                                     <th>Identification Number</th>
                                     <th>level</th>
+                                    <th>Active</th>
                                     <th>Time</th>
                                 </tr>
                                 </thead>
@@ -72,8 +73,9 @@
                                     <td>{{ index + 1}}</td>
                                     <td>{{ student.student.name }}</td>
                                     <td>{{ student.student.program.department.name }}</td>
-                                    <td>{{ student.student.matric_number}}</td>
+                                    <td>{{ student.student.matric_number || student.student.temp_number}}</td>
                                     <td>{{ student.student.level }}</td>
+                                    <td>{{student.student.deleted_at === null ? 'Yes':'No' }}</td>
                                     <td>{{ student.student.created_at }}</td>
                                 </tr>
                                 </tbody>
