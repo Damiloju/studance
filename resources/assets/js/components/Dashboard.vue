@@ -10,15 +10,29 @@
                     <div class="btn-group pull-right m-t-20">
                         <button type="button" @click.prevent="changeButton" class="btn btn-custom waves-effect waves-light" aria-expanded="false">{{ text }} </button>
                     </div>
-                    <h4 v-if="dashboard && step !== 3" class="page-title logo">Active Events
-                    </h4>
-                    <h4 v-if="form" class="page-title logo">Create Event</h4>
-                    <h4 v-if="step === 3" class="page-title logo">Attendance</h4>
+                    <transition
+                            mode="out-in"
+                        appear
+                        enter-active-class="animated fadeIn">
+                        <h4 v-if="dashboard && step !== 3" class="page-title logo">Active Events
+                        </h4>
+                    </transition>
+                    <transition
+                            mode="out-in"
+                            appear
+                            enter-active-class="animated fadeIn">
+                        <h4 v-if="form" class="page-title logo">Create Event</h4>
+                        <h4 v-if="step === 3" class="page-title logo">Attendance</h4>
+                    </transition>
                 </div>
             </div>
             <!-- end page title end breadcrumb -->
-
-        <div v-show="dashboard && step !== 3">
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated slideInRight"
+            >
+            <div key="1" v-show="dashboard && step !== 3">
             <div class="wrapper-page" v-show="events.length === 0">
                 <div class="logo">
                     There are currently no active events (Create one above)
@@ -48,8 +62,14 @@
                 </div>
             </div>
         </div>
+            </transition>
 
-            <div v-show="step === 3 && !form">
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated slideInRight"
+            >
+            <div key="2" v-show="step === 3 && !form">
                 <div class="row">
                     <div class="col-9">
                         <div class="card-box table-responsive">
@@ -90,8 +110,14 @@
                     </div>
                 </div> <!-- end row -->
             </div>
+            </transition>
 
-            <div v-show="form">
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated slideInLeft"
+            >
+            <div key="2" v-show="form">
                 <div class="row" >
                     <div class="col-12">
                         <div class="card-box table-responsive">
@@ -131,7 +157,7 @@
                     </div>
                 </div>
             </div>
-
+            </transition>
 
 
 

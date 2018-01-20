@@ -4,7 +4,7 @@ return [
 
     'super_user' => [
         'name' => 'Admin',
-        'email' => 'admin@domain.com',
+        'email' => 'admin@mcu.edu.ng',
         'password' => 'password',
         'role'  => 5
     ],
