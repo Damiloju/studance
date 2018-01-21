@@ -31,6 +31,7 @@ Route::group(['prefix' => 'backend', 'middleware' => 'super',], function (){
    Route::get('/event/{event}', 'EventController@index');
 
    Route::post('/records/add', 'RecordController@store');
+   Route::get('/records/view', 'RecordController@show');
    Route::get('/records', 'RecordController@index')->name('records');
 
 });

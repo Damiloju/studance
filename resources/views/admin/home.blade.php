@@ -10,9 +10,9 @@
 @endsection
 
 @section('scripts')
-    @include('partials.datatablesScrpit')
     <script src="/template/assets/plugins/custombox/dist/custombox.min.js"></script>
     <script src="/template/assets/plugins/custombox/dist/legacy.min.js"></script>
+    @include('partials.datatablesScrpit')
 @endsection
 
 @include('layouts.footer')

@@ -32,7 +32,7 @@
                     appear
                     enter-active-class="animated slideInRight"
             >
-            <div key="1" v-show="dashboard && step !== 3">
+            <div :key="1" v-show="dashboard && step !== 3">
             <div class="wrapper-page" v-show="events.length === 0">
                 <div class="logo">
                     There are currently no active events (Create one above)
@@ -69,12 +69,12 @@
                     appear
                     enter-active-class="animated slideInRight"
             >
-            <div key="2" v-show="step === 3 && !form">
+            <div :key="2" v-show="step === 3 && !form">
                 <div class="row">
                     <div class="col-9">
                         <div class="card-box table-responsive">
 
-                            <table id="datatable" class="table table-bordered">
+                            <table id="datatable-buttons" class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>S/N</th>
@@ -117,7 +117,7 @@
                     appear
                     enter-active-class="animated slideInLeft"
             >
-            <div key="2" v-show="form">
+            <div :key="3" v-show="form">
                 <div class="row" >
                     <div class="col-12">
                         <div class="card-box table-responsive">

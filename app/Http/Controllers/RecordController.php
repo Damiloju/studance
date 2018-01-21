@@ -90,9 +90,26 @@ class RecordController extends Controller
      * @param  \App\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function show(Record $record)
+    public function show(Request $request)
     {
-        //
+        $this->validate($request, [
+            'event' => 'required'
+        ]);
+
+        $record =  new Record;
+
+        try {
+            $records =  $record->where('event_id',$request->event)
+                ->get();
+            $records = $records->load(['student' => function ($query){
+                $query->withTrashed()->with('program.department');
+            }]);
+
+            return apiSuccess('Records gotten succesfully',$records,[]);
+
+        }catch(QueryException $e){
+            return apiFailure($e->getMessage(),[],1);
+        }
     }
 
     /**

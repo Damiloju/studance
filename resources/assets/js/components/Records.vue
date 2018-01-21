@@ -1,14 +1,14 @@
 <template>
     <div class="wrapper">
-        <notifications group="program" animation-type="velocity" />
+        <notifications group="notify" animation-type="velocity" />
         <div class="container-fluid">
 
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-sm-12">
-                    <!--<div class="btn-group pull-right m-t-20">-->
-                        <!--<button @click.prevent="studentForm = !studentForm" class="btn btn-success btn-md waves-effect waves-light m-b-30"><i class="md md-add"></i>{{ text }}</button>-->
-                    <!--</div>-->
+                    <div class="btn-group pull-right m-t-20">
+                        <button v-if="step !== 1" @click.prevent="step = 1" class="btn btn-success btn-md waves-effect waves-light m-b-30"><i class="md md-add"></i>Events</button>
+                    </div>
                     <h4 class="page-title">All Events</h4>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     appear
                     enter-active-class="animated zoomIn"
             >
-            <div>
+            <div :key="1" v-show="step !== 2">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
@@ -39,7 +39,7 @@
                                 <tbody class="text-center">
                                 <tr v-for="(event,index) in events" :key="index">
                                     <td>{{index + 1}}</td>
-                                    <td class="text-capitalize">{{event.event}}</td>
+                                    <td class="text-capitalize"><a :href="event.id" @click.prevent="record(event.id)">{{event.event}}</a></td>
                                     <td>{{event.session }}</td>
                                     <td class="text-capitalize">{{event.semester }}</td>
                                     <td>{{event.deleted_at === null ? 'Yes':'No'}}</td>
@@ -51,6 +51,48 @@
                     </div>
                 </div> <!-- end row -->
             </div>
+            </transition>
+
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated slideInRight"
+            >
+                <div :key="2" v-show="step === 2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box table-responsive">
+
+                                <table id="datatable-buttons" class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Name</th>
+                                        <th>Department</th>
+                                        <th>Identification Number</th>
+                                        <th>level</th>
+                                        <th>Active</th>
+                                        <th>Time</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr v-for="(student, index) in students" :key="index">
+                                        <td>{{ index + 1}}</td>
+                                        <td>{{ student.student.name }}</td>
+                                        <td>{{ student.student.program.department.name }}</td>
+                                        <td>{{ student.student.matric_number || student.student.temp_number}}</td>
+                                        <td>{{ student.student.level }}</td>
+                                        <td>{{student.student.deleted_at === null ? 'Yes':'No' }}</td>
+                                        <td>{{ student.student.created_at }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+                </div>
             </transition>
 
         </div> <!-- end container -->
@@ -65,12 +107,49 @@
         data() {
           return {
             loading: false,
+            step:1,
             events: events,
+            students:{}
           }
         },
         computed:{
         },
         methods: {
+          record(event){
+            this.currentEvent = event;
+            let url = '/backend/records/view?event=' + this.currentEvent;
+            axios.get(url)
+                .then(response => {
+                  if(response.data.status == 0 ){
+                    this.$notify({
+                      group:'notify',
+                      type:'success',
+                      title:'Nice!',
+                      text:response.data.message,
+                    });
+                    this.students = response.data.data;
+                  }else{
+                    this.$notify({
+                      group:'notify',
+                      type:'warning',
+                      title:'Sorry!',
+                      text:response.data.message,
+                    });
+                  }
+                  this.loading = false;
+                  this.form = false;
+                  this.dashboard = true
+                }).catch(error => {
+              this.$notify({
+                group:'notify',
+                type:'warning',
+                title:'Sorry!',
+                text:'We could not get event! Please try again later'
+              });
+              this.loading = false;
+            });
+            this.step = 2
+          },
         }
     }
 </script>
