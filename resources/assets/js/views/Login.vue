@@ -3,6 +3,11 @@
         <notifications group="login" animation-type="velocity" />
         <div class="account-pages"></div>
         <div class="clearfix"></div>
+        <transition
+                mode="out-in"
+                appear
+                enter-active-class="animated slideInDown"
+        >
         <div class="wrapper-page">
             <div class="text-center">
                 <a href="/" class="logo"><span>McPherson<span>University</span></span></a>
@@ -67,6 +72,7 @@
             <!--</div>-->
 
         </div>
+        </transition>
     </div>
 </template>
 

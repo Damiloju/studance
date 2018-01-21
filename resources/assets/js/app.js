@@ -22,6 +22,7 @@ Vue.component('home-component', require('./views/Home.vue'));
 Vue.component('login-component', require('./views/Login.vue'));
 Vue.component('dashboard-component', require('./components/Dashboard.vue'));
 Vue.component('students-component', require('./components/Students.vue'));
+Vue.component('records-component', require('./components/Records.vue'));
 
 Vue.component('app-loading',		require('./misc/AppLoader.vue'));
 Vue.component('btn-loading',		require('./misc/ButtonLoader.vue'));

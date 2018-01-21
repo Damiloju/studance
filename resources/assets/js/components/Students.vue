@@ -13,6 +13,11 @@
                 </div>
             </div>
             <!-- end page title end breadcrumb -->
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated zoomIn"
+            >
             <div v-show="studentForm === false">
                 <div class="row">
                     <div class="col-12">
@@ -48,7 +53,13 @@
                     </div>
                 </div> <!-- end row -->
             </div>
+            </transition>
 
+            <transition
+                    mode="out-in"
+                    appear
+                    enter-active-class="animated pulse"
+            >
             <div v-show="studentForm === true">
                 <div class="row" >
                     <div class="col-12">
@@ -100,7 +111,7 @@
                     </div>
                 </div>
             </div>
-
+            </transition>
 
         </div> <!-- end container -->
 

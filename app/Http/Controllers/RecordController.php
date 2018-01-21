@@ -8,6 +8,7 @@ use App\Student;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use JavaScript;
 
 class RecordController extends Controller
 {
@@ -18,7 +19,12 @@ class RecordController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::withTrashed()->get();
+
+        JavaScript::put([
+            'events' => $events
+        ]);
+        return view('admin.records.home');
     }
 
     /**

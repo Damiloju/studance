@@ -122,38 +122,15 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-texture"></i><span> Records </span> </a>
-                        <ul class="submenu">
-                            <li><a href="form-elements.html">General Elements</a></li>
-                            <li><a href="form-advanced.html">Advanced Form</a></li>
-                            <li><a href="form-validation.html">Form Validation</a></li>
-                            <li><a href="form-wizard.html">Form Wizard</a></li>
-                            <li><a href="form-fileupload.html">Form Uploads</a></li>
-                            <li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
-                            <li><a href="form-xeditable.html">X-editable</a></li>
-                        </ul>
+                        <a href="{{ route('records') }}"><i class="mdi mdi-texture"></i><span> Records </span> </a>
                     </li>
 
                     <li class="has-submenu">
                         <a href="#"><i class="mdi mdi-account"></i> <span> Administrators </span> </a>
-                        <ul class="submenu">
-                            <li><a href="tables-basic.html">Basic Tables</a></li>
-                            <li><a href="tables-datatable.html">Data Table</a></li>
-                            <li><a href="tables-responsive.html">Responsive Table</a></li>
-                            <li><a href="tables-editable.html">Editable Table</a></li>
-                            <li><a href="tables-tablesaw.html">Tablesaw Table</a></li>
-                        </ul>
                     </li>
 
                     <li class="has-submenu">
                         <a href="#"><i class="mdi mdi-chart-donut-variant"></i><span> Others </span> </a>
-                        <ul class="submenu">
-                            <li><a href="chart-flot.html">Flot Chart</a></li>
-                            <li><a href="chart-morris.html">Morris Chart</a></li>
-                            <li><a href="chart-chartist.html">Chartist Charts</a></li>
-                            <li><a href="chart-chartjs.html">Chartjs Chart</a></li>
-                            <li><a href="chart-other.html">Other Chart</a></li>
-                        </ul>
                     </li>
                 </ul>
                 <!-- End navigation menu -->
