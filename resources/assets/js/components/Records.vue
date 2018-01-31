@@ -63,7 +63,7 @@
                         <div class="col-12">
                             <div class="card-box table-responsive">
 
-                                <table id="datatable-buttons" class="table table-bordered">
+                                <table id="" class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>S/N</th>
