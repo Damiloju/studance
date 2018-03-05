@@ -94,6 +94,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="files">Passport Photo</label>
+                                    <div>
+                                        <input type="file" id="files" @change="uploadImage" :disabled="loading" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Program</label>
                                     <div>
                                         <select class="form-control" :disabled="loading" v-model="student.program_id" required>
@@ -167,6 +174,19 @@
           }
         },
         methods: {
+          uploadImage(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+              return;
+            this.createImage(files[0]);
+          },
+          createImage(file) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+              this.student.photo = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          },
           addStudent() {
             this.loading = true;
             axios.post('/backend/students', this.student)

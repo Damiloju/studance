@@ -20,6 +20,7 @@ Vue.use(Notifications, {velocity});
 
 Vue.component('home-component', require('./views/Home.vue'));
 Vue.component('login-component', require('./views/Login.vue'));
+Vue.component('student-registration-component', require('./views/Register.vue'));
 Vue.component('dashboard-component', require('./components/Dashboard.vue'));
 Vue.component('students-component', require('./components/Students.vue'));
 Vue.component('records-component', require('./components/Records.vue'));

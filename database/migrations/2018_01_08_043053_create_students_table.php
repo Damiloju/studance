@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('matric_number')->unique()->nullable();
             $table->string('temp_number')->unique()->nullable();
             $table->integer('program_id');
+            $table->string('photo_path')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

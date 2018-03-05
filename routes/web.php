@@ -12,8 +12,16 @@
 */
 
 Route::get('/', function () {
+    return view('home');
+})->middleware('guest');
+
+Route::get('/admin', function () {
     return view('welcome');
 })->middleware('guest');
+
+Route::get('/backend/programs', 'ProgramController@getPrograms');
+
+Route::post('/students', 'StudentController@storeStudent');
 
 Route::post('/login', 'AuthController@authenticateUser');
 Route::get('/logout', 'AuthController@logout')->middleware('auth');
@@ -23,8 +31,6 @@ Route::group(['prefix' => 'backend', 'middleware' => 'super',], function (){
 
    Route::get('/students','StudentController@index')->name('students');
    Route::post('/students', 'StudentController@store');
-
-   Route::get('/programs', 'ProgramController@getPrograms');
 
    Route::post('/event/create', 'EventController@store');
    Route::post('/event/delete/{event}', 'EventController@delete');

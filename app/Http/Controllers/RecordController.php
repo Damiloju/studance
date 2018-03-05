@@ -10,6 +10,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use JavaScript;
 
+
 class RecordController extends Controller
 {
     /**

@@ -9,7 +9,7 @@ class Student extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name','level','matric_number','temp_number','program_id'];
+    protected $fillable = ['name','level','matric_number','photo','temp_number','program_id'];
 
     public function program()
     {

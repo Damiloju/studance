@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use JavaScript;
 use Mockery\Exception;
+use Intervention\Image\Facades\Image;
 
 class StudentController extends Controller
 {
+    private $filepath;
     /**
      * Display a listing of the resource.
      *
@@ -42,15 +46,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'level' => 'required',
+            'photo' => 'required|image64:jpeg,jpg',
+            'matric_number' => 'required',
+            'program_id'=> 'required'
         ]);
+        if ($validator->fails()) {
+            return apiFailure($validator->errors(),[],1);
+        }
 
         $student = new Student;
 
+        $imageData = $request['photo'];
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+        $this->filepath = storage_path('app/public/students/').$fileName;
+        Image::make($imageData)->save($this->filepath);
+        $data['name'] = $request->name;
+        $data['photo'] = $this->filepath;
+        $data['matric_number'] = $request->matric_number;
+        $data['program_id'] = $request->program_id;
+        $data['level'] = $request->level;
+
         try {
-            $student->create($request->all());
+            $student->create($data);
             $students =  Student::all();
             $students->load('program.department');
             return apiSuccess('Student created succesfully',$students,[]);
@@ -58,6 +78,40 @@ class StudentController extends Controller
             return apiFailure($e->getMessage(),[],1);
         }
     }
+
+    public function storeStudent(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'level' => 'required',
+            'photo' => 'required|image64:jpeg,jpg',
+            'matric_number' => 'required',
+            'program_id'=> 'required'
+        ]);
+        if ($validator->fails()) {
+            return apiFailure($validator->errors(),[],1);
+        }
+
+        $student = new Student;
+
+        $imageData = $request['photo'];
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+        $this->filepath = storage_path('app/public/students/').$fileName;
+        Image::make($imageData)->save($this->filepath);
+        $data['name'] = $request->name;
+        $data['photo'] = $this->filepath;
+        $data['matric_number'] = $request->matric_number;
+        $data['program_id'] = $request->program_id;
+        $data['level'] = $request->level;
+
+        try {
+            $student->create($data);
+            return apiSuccess('Registration successful',[]);
+        }catch(Exception $e){
+            return apiFailure($e->getMessage(),[],1);
+        }
+    }
+
 
     /**
      * Display the specified resource.
