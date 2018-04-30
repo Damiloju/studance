@@ -40,4 +40,6 @@ Route::group(['prefix' => 'backend', 'middleware' => 'super',], function (){
    Route::get('/records/view', 'RecordController@show');
    Route::get('/records', 'RecordController@index')->name('records');
 
+   Route::get('/students/barcode','StudentController@generateBarcode')->name('barcode');
+
 });

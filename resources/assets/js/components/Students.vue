@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
-
+                            <a href="/backend/students/barcode"><button class="btn btn-success btn-md waves-effect waves-light m-b-30">Generate Barcode</button></a>
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead>
                                 <tr>

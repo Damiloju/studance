@@ -18,6 +18,15 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function generateBarcode()
+    {
+        $students =  Student::all();
+
+        return view('admin.students.barcode',compact('students'));
+    }
+
+
     public function index()
     {
         $students =  Student::all();
