@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Student;
-use Barryvdh\DomPDF\Facade as PDF;
-use Barryvdh\Snappy\Facades\SnappyPdf;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use JavaScript;
 use Mockery\Exception;
@@ -28,12 +26,10 @@ class StudentController extends Controller
         return view('admin.students.barcode',compact('students'));
     }
 
-    public function generatePDF()
+    public function generatePDF(PDF $pdf)
     {
-        $students =  Student::all();
-        $students->load('program.department');
-        $pdf = PDF::loadView('admin.students.home', $students);
-        return $pdf->download('students.pdf');
+        $students =  Student::with('program.department')->get();
+        return $pdf = $pdf->loadView('admin.students.codes', compact('students'))->stream();
     }
 
 
