@@ -1,6 +1,7 @@
 @extends('layouts.pages')
 
 @section('styles')
+    <link rel="shortcut icon" href="/template/assets/images/favicon.ico">
     <link href="/template/assets/plugins/custombox/dist/custombox.min.css" rel="stylesheet">
 @endsection
 
