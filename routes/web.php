@@ -41,5 +41,6 @@ Route::group(['prefix' => 'backend', 'middleware' => 'super',], function (){
    Route::get('/records', 'RecordController@index')->name('records');
 
    Route::get('/students/barcode','StudentController@generateBarcode')->name('barcode');
+   Route::get('/students/pdf','StudentController@generatePDF')->name('pdf');
 
 });

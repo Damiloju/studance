@@ -16,7 +16,7 @@
                     <div class="row" >
                         <div class="col-12 container text-center" style="border: 1px solid #a1a1a1;padding: 15px;width: 70%;">
                             @foreach($students as $student)
-                                <img src="{{BCode1D::getBarcodePNGPath($student->matric_number, 'C39')}}" alt="barcode" />
+                                <img src="{{BCode1D::getBarcodePNGPath($student->matric_number, 'S25',1.5,13)}}" alt="barcode" />
                                 <br>
                                 <p>{{ $student->name }}</p>
                             @endforeach

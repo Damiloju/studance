@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
         Milon\Barcode\BarcodeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +230,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'BCode1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'BCode2D' => Milon\Barcode\Facades\DNS2DFacade::class,
-
+        'PDF2' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
     ],
 
 ];

@@ -23,6 +23,7 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <a href="/backend/students/barcode"><button class="btn btn-success btn-md waves-effect waves-light m-b-30">Generate Barcode</button></a>
+                            <a href="/backend/students/pdf"><button class="btn btn-success btn-md waves-effect waves-light m-b-30 pull-right">Generate PDF</button></a>
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -31,7 +32,7 @@
                                     <th>Department</th>
                                     <th>Matric Number</th>
                                     <th>level</th>
-                                    <th>Temporary ID</th>
+                                    <th>Barcode</th>
                                     <th>Programs Missed</th>
                                 </tr>
                                 </thead>
@@ -44,7 +45,8 @@
                                     <td>{{student.program === null ? '-':student.program.department.name }}</td>
                                     <td>{{student.matric_number === null ? '-':student.matric_number }}</td>
                                     <td>{{student.level}}</td>
-                                    <td>{{student.temp_number === null ? '-':student.temp_number}}</td>
+                                    <td><img :src="'/barcodes/'+student.matric_number+'.png'" alt="barcode" /></td>
+                                    <!--<td>{{student.temp_number === null ? '-':student.temp_number}}</td>-->
                                     <td>-</td>
                                 </tr>
                                 </tbody>
