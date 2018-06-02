@@ -28,7 +28,8 @@ class StudentController extends Controller
 
     public function generatePDF(PDF $pdf)
     {
-        $students =  Student::with('program.department')->get();
+        $students =  Student::with('program.department.college')->get();
+
         return $pdf = $pdf->loadView('admin.students.codes', compact('students'))->stream();
     }
 
