@@ -4,15 +4,15 @@
 
             <!-- Logo container-->
             <div class="logo">
-                {{--<a href="index.html" class="logo">--}}
-                {{--<span class="logo-small"><i class="mdi mdi-radar"></i></span>--}}
-                {{--<span class="logo-large"><i class="mdi mdi-radar"></i> McPherson</span>--}}
-                {{--</a>--}}
-                <!-- Image Logo -->
-                <a href="index.html" class="logo" style="padding-top: 18px">
-                    <img src="/template/assets/images/logo-sm.png" alt="" height="26" class="logo-small">
-                    <img src="/template/assets/images/logo.png" alt="" height="24" class="logo-large">
+                <a href="index.html" class="logo">
+                <span class="logo-small"><i class="mdi mdi-radar"></i></span>
+                <span class="logo-large"><i class="mdi mdi-radar"></i> McPherson University</span>
                 </a>
+                {{--<!-- Image Logo -->--}}
+                {{--<a href="index.html" class="logo" style="padding-top: 18px">--}}
+                    {{--<img src="/template/assets/images/logo-sm.png" alt="" height="26" class="logo-small">--}}
+                    {{--<img src="/template/assets/images/logo.png" alt="" height="24" class="logo-large">--}}
+                {{--</a>--}}
 
             </div>
             <!-- End Logo container-->
@@ -33,13 +33,13 @@
                         </a>
                         <!-- End mobile menu toggle-->
                     </li>
-                    <li class="hide-phone">
-                        <form class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </li>
+                    {{--<li class="hide-phone">--}}
+                        {{--<form class="app-search">--}}
+                            {{--<input type="text" placeholder="Search..."--}}
+                                   {{--class="form-control">--}}
+                            {{--<button type="submit"><i class="fa fa-search"></i></button>--}}
+                        {{--</form>--}}
+                    {{--</li>--}}
                     {{--<li>--}}
                         {{--<!-- Notification -->--}}
                         {{--<div class="notification-box">--}}
@@ -65,20 +65,20 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-user m-r-5"></i> Profile
-                            </a>
+                            {{--<!-- item-->--}}
+                            {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                {{--<i class="ti-user m-r-5"></i> Profile--}}
+                            {{--</a>--}}
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-settings m-r-5"></i> Settings
-                            </a>
+                            {{--<!-- item-->--}}
+                            {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                {{--<i class="ti-settings m-r-5"></i> Settings--}}
+                            {{--</a>--}}
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-lock m-r-5"></i> Lock screen
-                            </a>
+                            {{--<!-- item-->--}}
+                            {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+                                {{--<i class="ti-lock m-r-5"></i> Lock screen--}}
+                            {{--</a>--}}
 
                             <!-- item-->
                             <a href="/logout" class="dropdown-item notify-item">
@@ -125,13 +125,13 @@
                         <a href="{{ route('records') }}"><i class="mdi mdi-texture"></i><span> Records </span> </a>
                     </li>
 
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-account"></i> <span> Administrators </span> </a>
-                    </li>
+                    {{--<li class="has-submenu">--}}
+                        {{--<a href="#"><i class="mdi mdi-account"></i> <span> Administrators </span> </a>--}}
+                    {{--</li>--}}
 
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-chart-donut-variant"></i><span> Others </span> </a>
-                    </li>
+                    {{--<li class="has-submenu">--}}
+                        {{--<a href="#"><i class="mdi mdi-chart-donut-variant"></i><span> Others </span> </a>--}}
+                    {{--</li>--}}
                 </ul>
                 <!-- End navigation menu -->
             </div> <!-- end #navigation -->

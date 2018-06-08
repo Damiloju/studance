@@ -5,7 +5,7 @@ return [
     'super_user' => [
         'name' => 'Admin',
         'email' => 'admin@mcu.edu.ng',
-        'password' => 'password',
+        'password' => 'secret',
         'role'  => 5
     ],
     'colleges' => [

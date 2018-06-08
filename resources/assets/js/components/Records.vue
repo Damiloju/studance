@@ -18,7 +18,7 @@
                     appear
                     enter-active-class="animated zoomIn"
             >
-            <div :key="1" v-show="step !== 2">
+            <div :key="1">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
@@ -53,47 +53,47 @@
             </div>
             </transition>
 
-            <transition
-                    mode="out-in"
-                    appear
-                    enter-active-class="animated slideInRight"
-            >
-                <div :key="2" v-show="step === 2">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-box table-responsive">
+            <!--<transition-->
+                    <!--mode="out-in"-->
+                    <!--appear-->
+                    <!--enter-active-class="animated slideInRight"-->
+            <!--&gt;-->
+                <!--<div :key="2" v-show="step === 2">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-12">-->
+                            <!--<div class="card-box table-responsive">-->
 
-                                <table id="" class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Name</th>
-                                        <th>Department</th>
-                                        <th>Identification Number</th>
-                                        <th>level</th>
-                                        <th>Active</th>
-                                        <th>Time</th>
-                                    </tr>
-                                    </thead>
+                                <!--<table id="datatable" class="table table-bordered">-->
+                                    <!--<thead>-->
+                                    <!--<tr>-->
+                                        <!--<th>S/N</th>-->
+                                        <!--<th>Name</th>-->
+                                        <!--<th>Department</th>-->
+                                        <!--<th>Identification Number</th>-->
+                                        <!--<th>level</th>-->
+                                        <!--<th>Active</th>-->
+                                        <!--<th>Time</th>-->
+                                    <!--</tr>-->
+                                    <!--</thead>-->
 
 
-                                    <tbody>
-                                    <tr v-for="(student, index) in students" :key="index">
-                                        <td>{{ index + 1}}</td>
-                                        <td>{{ student.student.name }}</td>
-                                        <td>{{ student.student.program.department.name }}</td>
-                                        <td>{{ student.student.matric_number || student.student.temp_number}}</td>
-                                        <td>{{ student.student.level }}</td>
-                                        <td>{{student.student.deleted_at === null ? 'Yes':'No' }}</td>
-                                        <td>{{ student.student.created_at }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> <!-- end row -->
-                </div>
-            </transition>
+                                    <!--<tbody>-->
+                                    <!--<tr v-for="(student, index) in students" :key="index">-->
+                                        <!--<td>{{ index + 1}}</td>-->
+                                        <!--<td>{{ student.student.name }}</td>-->
+                                        <!--<td>{{ student.student.program.department.name }}</td>-->
+                                        <!--<td>{{ student.student.matric_number || student.student.temp_number}}</td>-->
+                                        <!--<td>{{ student.student.level }}</td>-->
+                                        <!--<td>{{student.student.deleted_at === null ? 'Yes':'No' }}</td>-->
+                                        <!--<td>{{ student.student.created_at }}</td>-->
+                                    <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div> &lt;!&ndash; end row &ndash;&gt;-->
+                <!--</div>-->
+            <!--</transition>-->
 
         </div> <!-- end container -->
 
@@ -118,38 +118,10 @@
           record(event){
             this.currentEvent = event;
             let url = '/backend/records/view?event=' + this.currentEvent;
-            axios.get(url)
-                .then(response => {
-                  if(response.data.status == 0 ){
-                    this.$notify({
-                      group:'notify',
-                      type:'success',
-                      title:'Nice!',
-                      text:response.data.message,
-                    });
-                    this.students = response.data.data;
-                  }else{
-                    this.$notify({
-                      group:'notify',
-                      type:'warning',
-                      title:'Sorry!',
-                      text:response.data.message,
-                    });
-                  }
-                  this.loading = false;
-                  this.form = false;
-                  this.dashboard = true
-                }).catch(error => {
-              this.$notify({
-                group:'notify',
-                type:'warning',
-                title:'Sorry!',
-                text:'We could not get event! Please try again later'
-              });
-              this.loading = false;
-            });
-            this.step = 2
-          },
+
+            window.location.href = url;
+
+          }
         }
     }
 </script>

@@ -106,7 +106,11 @@ class RecordController extends Controller
                 $query->withTrashed()->with('program.department');
             }]);
 
-            return apiSuccess('Records gotten succesfully',$records,[]);
+            JavaScript::put([
+                'students' => $records
+            ]);
+
+            return view('admin.records.record');
 
         }catch(QueryException $e){
             return apiFailure($e->getMessage(),[],1);

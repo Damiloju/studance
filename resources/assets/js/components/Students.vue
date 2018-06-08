@@ -33,7 +33,6 @@
                                     <th>Matric Number</th>
                                     <th>level</th>
                                     <th>Barcode</th>
-                                    <th>Programs Missed</th>
                                 </tr>
                                 </thead>
 
@@ -45,9 +44,8 @@
                                     <td>{{student.program === null ? '-':student.program.department.name }}</td>
                                     <td>{{student.matric_number === null ? '-':student.matric_number }}</td>
                                     <td>{{student.level}}</td>
-                                    <td><img :src="'/barcodes/'+student.matric_number+'.png'" alt="barcode" /></td>
+                                    <td><img :src="'/barcodes/'+student.matric_number+'.png'" alt="No Barcode Yet" /></td>
                                     <!--<td>{{student.temp_number === null ? '-':student.temp_number}}</td>-->
-                                    <td>-</td>
                                 </tr>
                                 </tbody>
                             </table>

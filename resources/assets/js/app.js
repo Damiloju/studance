@@ -24,6 +24,7 @@ Vue.component('student-registration-component', require('./views/Register.vue'))
 Vue.component('dashboard-component', require('./components/Dashboard.vue'));
 Vue.component('students-component', require('./components/Students.vue'));
 Vue.component('records-component', require('./components/Records.vue'));
+Vue.component('individual-records-component', require('./components/IndividulRecords.vue'));
 
 Vue.component('app-loading',		require('./misc/AppLoader.vue'));
 Vue.component('btn-loading',		require('./misc/ButtonLoader.vue'));
