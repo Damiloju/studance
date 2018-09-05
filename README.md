@@ -12,4 +12,4 @@ This are the basic instructions for running the application
 4. Run npm install
 5. Vist [Milon barcode](https://github.com/milon/barcode) for details about setting up the dependency
 6. Run php artisan migrate
-7. Run defaults install
+7. Run php artisan defaults:install
